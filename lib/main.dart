@@ -1,7 +1,8 @@
+import 'package:auth_mobile_app/core/utils/colors.dart';
 import 'package:auth_mobile_app/features/authentication/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
-void main () {
+void main() {
   runApp(const AuthMobileApp());
 }
 
@@ -10,10 +11,15 @@ class AuthMobileApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Auth Mobile App',
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: ThemeColors.authButtonBackground,
+            brightness: Brightness.light),
+      ),
+      home: const LoginPage(),
     );
   }
 }
