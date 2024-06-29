@@ -16,4 +16,3 @@ class LoginPageBody extends StatelessWidget {
     );
   }
 }
-
