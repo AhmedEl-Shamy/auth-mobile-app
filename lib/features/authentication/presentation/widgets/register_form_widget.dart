@@ -7,8 +7,8 @@ import 'custom_form_field.dart';
 import 'form_options_widget.dart';
 import 'navigator_widget.dart';
 
-class LoginFormWidget extends StatelessWidget {
-  const LoginFormWidget({super.key});
+class RegisterFormWidget extends StatelessWidget {
+  const RegisterFormWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class LoginFormWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              'Log in to your account',
+              'Create new account',
               style: TextStlyles.title,
               textAlign: TextAlign.center,
             ),
@@ -29,6 +29,23 @@ class LoginFormWidget extends StatelessWidget {
             ),
             CustomFormField(
               label: 'Username',
+              isPassword: false,
+              validator: (value) {
+                return null;
+              },
+              suffixIconButton: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.cancel_outlined,
+                  color: ThemeColors.mainTextColor.withOpacity(0.5),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomFormField(
+              label: 'Email',
               isPassword: false,
               validator: (value) {
                 return null;
@@ -55,14 +72,14 @@ class LoginFormWidget extends StatelessWidget {
               height: 20,
             ),
             FormOptionsWidget(
-              secondOptionStr: 'Forgot password?',
-              secondOptionFun: (){},
+              secondOptionStr: 'Have a problem?',
+              secondOptionFun: () {},
             ),
             const SizedBox(
               height: 20,
             ),
             CustomButton(
-              label: 'Log in',
+              label: 'Register',
               onPressed: () {},
               backgroundColor: ThemeColors.authButtonBackground,
             ),
@@ -70,8 +87,8 @@ class LoginFormWidget extends StatelessWidget {
               height: 20,
             ),
             const NavigatorWidget(
-              statement: 'Don’t have an account?',
-              pageName: 'Register',
+              statement: 'Already have an account?',
+              pageName: 'Log in',
               pageRoute: '/',
             ),
           ],

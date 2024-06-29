@@ -3,22 +3,31 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/text_stlyles.dart';
 
-class RegisterNavigatorButton extends StatelessWidget {
-  const RegisterNavigatorButton({super.key});
-
+class NavigatorWidget extends StatelessWidget {
+  const NavigatorWidget({
+    super.key,
+    required this.statement,
+    required this.pageName,
+    required this.pageRoute,
+  });
+  final String statement;
+  final String pageName;
+  final String pageRoute;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text(
-          'Don’t have an account?',
+        Text(
+          statement,
           style: TextStlyles.normal,
         ),
-        const SizedBox(width: 10,),
+        const SizedBox(
+          width: 10,
+        ),
         InkWell(
-          onTap: (){},
+          onTap: () {},
           child: Text(
-            'Register',
+            pageName,
             style: TextStlyles.normal.copyWith(
               fontWeight: FontWeight.bold,
               decoration: TextDecoration.underline,

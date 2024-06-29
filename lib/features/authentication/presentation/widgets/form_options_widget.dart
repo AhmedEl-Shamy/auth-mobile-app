@@ -4,9 +4,10 @@ import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/text_stlyles.dart';
 import 'remember_me_checked_button.dart';
 
-class LogInOptionsWidget extends StatelessWidget {
-  const LogInOptionsWidget({super.key});
-
+class FormOptionsWidget extends StatelessWidget {
+  const FormOptionsWidget({super.key, required this.secondOptionStr, required this.secondOptionFun});
+  final String secondOptionStr;
+  final void Function() secondOptionFun;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -14,8 +15,9 @@ class LogInOptionsWidget extends StatelessWidget {
       children: [
         RememberMeCheckButton(),
         InkWell(
+          onTap: secondOptionFun,
           child: Text(
-            'Forgot password?',
+            secondOptionStr,
             style: TextStlyles.normal.copyWith(
               fontWeight: FontWeight.bold,
               decoration: TextDecoration.underline,
@@ -23,7 +25,6 @@ class LogInOptionsWidget extends StatelessWidget {
               decorationColor: ThemeColors.authButtonBackground,
             ),
           ),
-          onTap: () {},
         ),
       ],
     );

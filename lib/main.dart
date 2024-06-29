@@ -1,5 +1,6 @@
 import 'package:auth_mobile_app/core/utils/colors.dart';
 import 'package:auth_mobile_app/features/authentication/presentation/pages/login_page.dart';
+import 'package:auth_mobile_app/features/authentication/presentation/pages/register_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class AuthMobileApp extends StatelessWidget {
             seedColor: ThemeColors.authButtonBackground,
             brightness: Brightness.light),
       ),
-      home: const LoginPage(),
+      home: const RegisterPage(),
     );
   }
 }
