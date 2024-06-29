@@ -12,6 +12,7 @@ class AuthMobileApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Auth Mobile App',
+      debugShowCheckedModeBanner: false,
       home: LoginPage(),
     );
   }
