@@ -29,13 +29,14 @@ class CustomFormField extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 10,
+          height: 5,
         ),
         CustomTextFormField(
-            hint: label,
-            validator: validator,
-            isPassword: isPassword,
-            suffixIconButton: suffixIconButton),
+          hint: label,
+          validator: validator,
+          isPassword: isPassword,
+          suffixIconButton: suffixIconButton,
+        ),
       ],
     );
   }

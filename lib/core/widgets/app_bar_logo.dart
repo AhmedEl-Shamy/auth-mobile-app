@@ -6,8 +6,9 @@ import '../utils/assets_data.dart';
 class LogoWidget extends StatelessWidget {
   const LogoWidget({
     super.key,
+    this.imageUrl,
   });
-
+  final String? imageUrl;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -16,9 +17,11 @@ class LogoWidget extends StatelessWidget {
         padding: EdgeInsets.zero,
         height: SizeConfig.heightBlock * 15,
         width: SizeConfig.heightBlock * 15,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(AssetsData.logo),
+            image: (imageUrl == null)
+                ? const AssetImage(AssetsData.logo)
+                : NetworkImage(imageUrl!),
             fit: BoxFit.cover,
           ),
         ),
