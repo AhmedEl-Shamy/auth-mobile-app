@@ -19,7 +19,7 @@ class AuthRepoImpl extends AuthRepo {
       UserEntity user = await _authRemoteDataSource.logIn(params);
       return right(user);
     } on DioException catch(e) {
-      return left(Failure(errMsg: 'errMsg'));
+      return left(ServerFailure.fromDioException(e));
     }
   }
 
@@ -29,7 +29,7 @@ class AuthRepoImpl extends AuthRepo {
       UserEntity user = await _authRemoteDataSource.logInWithToken(params);
       return right(user);
     } on DioException catch(e) {
-      return left(Failure(errMsg: 'errMsg'));
+      return left(ServerFailure.fromDioException(e));
     }
   }
 
@@ -45,7 +45,7 @@ class AuthRepoImpl extends AuthRepo {
       await _authRemoteDataSource.register(params);
       return right(true);
     } on DioException catch(e) {
-      return left(Failure(errMsg: 'errMsg'));
+      return left(ServerFailure.fromDioException(e));
     }
   }
 }
