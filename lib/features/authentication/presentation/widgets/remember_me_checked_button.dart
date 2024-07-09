@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/text_stlyles.dart';
 
 class RememberMeCheckButton extends StatefulWidget {
-  RememberMeCheckButton({super.key});
-  bool isChecked = false;
+  const RememberMeCheckButton({super.key});
 
   @override
   State<RememberMeCheckButton> createState() => _RememberMeCheckButtonState();
 }
 
 class _RememberMeCheckButtonState extends State<RememberMeCheckButton> {
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,7 +19,7 @@ class _RememberMeCheckButtonState extends State<RememberMeCheckButton> {
       child: InkWell(
         onTap: () {
           setState(() {
-            widget.isChecked = !widget.isChecked;
+            isChecked = !isChecked;
           });
         },
         child: Row(
@@ -29,16 +30,15 @@ class _RememberMeCheckButtonState extends State<RememberMeCheckButton> {
                 borderRadius: BorderRadius.circular(5),
                 side: const BorderSide(width: 1),
               ),
-              value: widget.isChecked,
+              value: isChecked,
               onChanged: (value) {
                 setState(
                   () {
-                    widget.isChecked = !widget.isChecked;
+                    isChecked = !isChecked;
                   },
                 );
               },
             ),
-            
             Text(
               'Remember me',
               style: TextStlyles.normal.copyWith(

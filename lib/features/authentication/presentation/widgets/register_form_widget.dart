@@ -1,5 +1,6 @@
 import 'package:auth_mobile_app/core/utils/colors.dart';
 import 'package:auth_mobile_app/core/utils/text_stlyles.dart';
+import 'package:auth_mobile_app/features/authentication/presentation/widgets/password_Form_Field.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_button.dart';
@@ -29,7 +30,7 @@ class RegisterFormWidget extends StatelessWidget {
             ),
             CustomFormField(
               label: 'Username',
-              isPassword: false,
+              isObsecureText: false,
               validator: (value) {
                 return null;
               },
@@ -46,7 +47,7 @@ class RegisterFormWidget extends StatelessWidget {
             ),
             CustomFormField(
               label: 'Email',
-              isPassword: false,
+              isObsecureText: false,
               validator: (value) {
                 return null;
               },
@@ -61,12 +62,8 @@ class RegisterFormWidget extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            CustomFormField(
-              label: 'Password',
-              isPassword: true,
-              validator: (value) {
-                return null;
-              },
+            PasswordFormField(
+              validator: (value) => null,
             ),
             const SizedBox(
               height: 20,

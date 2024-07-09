@@ -6,6 +6,7 @@ import '../../../../core/widgets/custom_button.dart';
 import 'custom_form_field.dart';
 import 'form_options_widget.dart';
 import 'navigator_widget.dart';
+import 'password_Form_Field.dart';
 
 class LoginFormWidget extends StatelessWidget {
   const LoginFormWidget({super.key});
@@ -29,7 +30,7 @@ class LoginFormWidget extends StatelessWidget {
             ),
             CustomFormField(
               label: 'Username',
-              isPassword: false,
+              isObsecureText: false,
               validator: (value) {
                 return null;
               },
@@ -44,19 +45,15 @@ class LoginFormWidget extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            CustomFormField(
-              label: 'Password',
-              isPassword: true,
-              validator: (value) {
-                return null;
-              },
+            PasswordFormField(
+              validator: (value) => null,
             ),
             const SizedBox(
               height: 20,
             ),
             FormOptionsWidget(
               secondOptionStr: 'Forgot password?',
-              secondOptionFun: (){},
+              secondOptionFun: () {},
             ),
             const SizedBox(
               height: 20,
@@ -80,3 +77,5 @@ class LoginFormWidget extends StatelessWidget {
     );
   }
 }
+
+

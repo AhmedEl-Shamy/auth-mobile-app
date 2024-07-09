@@ -4,59 +4,40 @@ import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  CustomTextFormField({
+  const CustomTextFormField({
     super.key,
     required this.validator,
     this.suffixIconButton,
-    required this.isPassword, required this.hint,
+    required this.hint,
+    required this.isObsecureText,
   });
 
-  late bool isHiddenText;
   final String hint;
-  final bool isPassword;
+  final bool isObsecureText;
   final String? Function(String? value) validator;
   final IconButton? suffixIconButton;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
-
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   void initState() {
     super.initState();
-    widget.isHiddenText = widget.isPassword;
   }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: widget.isHiddenText,
+      obscureText: widget.isObsecureText,
       validator: widget.validator,
       style: TextStlyles.normal,
       cursorColor: ThemeColors.mainTextColor,
       decoration: InputDecoration(
         hintText: widget.hint,
         contentPadding: const EdgeInsets.all(20),
-        suffixIcon: (widget.isPassword && widget.suffixIconButton == null)
-            ? IconButton(
-                icon: (widget.isHiddenText)
-                    ? Icon(
-                        Icons.visibility_off_outlined,
-                        color: ThemeColors.mainTextColor.withOpacity(0.5),
-                      )
-                    : Icon(
-                        Icons.visibility_outlined,
-                        color: ThemeColors.mainTextColor.withOpacity(0.5),
-                      ),
-                onPressed: () {
-                  setState(() {
-                    widget.isHiddenText = !widget.isHiddenText;
-                  });
-                },
-              )
-            : widget.suffixIconButton,
+        suffixIcon: widget.suffixIconButton,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide(

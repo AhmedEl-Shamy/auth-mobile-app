@@ -7,13 +7,13 @@ class CustomFormField extends StatelessWidget {
   const CustomFormField({
     super.key,
     required this.label,
-    required this.isPassword,
+    required this.isObsecureText,
     required this.validator,
     this.suffixIconButton,
   });
 
   final String label;
-  final bool isPassword;
+  final bool isObsecureText;
   final String? Function(String? value) validator;
   final IconButton? suffixIconButton;
 
@@ -34,7 +34,7 @@ class CustomFormField extends StatelessWidget {
         CustomTextFormField(
           hint: label,
           validator: validator,
-          isPassword: isPassword,
+          isObsecureText: isObsecureText,
           suffixIconButton: suffixIconButton,
         ),
       ],
