@@ -1,5 +1,6 @@
 class UserEntity {
-  final String name;
+  final String userFirstName;
+  final String userlastName;
   final String userName;
   final String userEmail;
   final String userToken;
@@ -7,7 +8,8 @@ class UserEntity {
   final String userGender;
 
   UserEntity({
-    required this.name,
+    required this.userFirstName,
+    required this.userlastName,
     required this.userName,
     required this.userEmail,
     required this.userToken,

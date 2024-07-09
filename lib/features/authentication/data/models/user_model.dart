@@ -22,7 +22,8 @@ class UserModel extends UserEntity {
     this.token,
     this.refreshToken,
   }) : super(
-          name: '$firstName $lastName',
+          userFirstName: firstName!,
+          userlastName: lastName!,
           userName: username!,
           userEmail: email!,
           userToken: token!,
