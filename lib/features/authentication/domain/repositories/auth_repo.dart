@@ -4,7 +4,8 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/utils/Failure.dart';
 
 abstract class AuthRepo {
-  Future<Either<Failure, UserEntity>> logIn(String username, String password);
-  Future<Either<Failure, UserEntity>> register(String username, String password);
+  Future<Either<Failure, UserEntity>> logIn(Map<String, String> params);
+  Future<Either<Failure, UserEntity>> register(Map<String, String> params);
   Future<Either<Failure, UserEntity>> logInWithToken(String token);
+  Future<void> logOut();
 }
