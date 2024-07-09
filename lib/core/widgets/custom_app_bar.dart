@@ -13,10 +13,7 @@ class CustomAppBar extends StatelessWidget {
       padding: EdgeInsets.zero,
       height: SizeConfig.heightBlock * 30,
       child: const Stack(
-        children: [
-          LogoBackgroundWidget(),
-          LogoWidget()
-        ],
+        children: [LogoBackgroundWidget(), LogoWidget()],
       ),
     );
   }

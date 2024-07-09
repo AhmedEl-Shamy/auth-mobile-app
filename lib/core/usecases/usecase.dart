@@ -1,3 +1,3 @@
-abstract class UseCase <RType, ParmType> {
-  RType call (ParmType param);
+abstract class UseCase<RType, ParmType> {
+  RType call(ParmType param);
 }

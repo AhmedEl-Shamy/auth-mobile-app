@@ -5,7 +5,10 @@ import '../../../../core/utils/text_stlyles.dart';
 import 'remember_me_checked_button.dart';
 
 class FormOptionsWidget extends StatelessWidget {
-  const FormOptionsWidget({super.key, required this.secondOptionStr, required this.secondOptionFun});
+  const FormOptionsWidget(
+      {super.key,
+      required this.secondOptionStr,
+      required this.secondOptionFun});
   final String secondOptionStr;
   final void Function() secondOptionFun;
   @override
@@ -13,7 +16,7 @@ class FormOptionsWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        RememberMeCheckButton(),
+        const RememberMeCheckButton(),
         InkWell(
           onTap: secondOptionFun,
           child: Text(

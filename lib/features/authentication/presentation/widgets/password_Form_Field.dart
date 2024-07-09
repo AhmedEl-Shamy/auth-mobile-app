@@ -18,25 +18,24 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
   @override
   Widget build(BuildContext context) {
     return CustomFormField(
-      label: 'Password',
-      isObsecureText: isObsecureText,
-      suffixIconButton: IconButton(
-        icon: (isObsecureText)
-            ? Icon(
-                Icons.visibility_off_outlined,
-                color: ThemeColors.mainTextColor.withOpacity(0.5),
-              )
-            : Icon(
-                Icons.visibility_outlined,
-                color: ThemeColors.mainTextColor.withOpacity(0.5),
-              ),
-        onPressed: () {
-          setState(() {
-            isObsecureText = !isObsecureText;
-          });
-        },
-      ),
-      validator: widget.validator
-    );
+        label: 'Password',
+        isObsecureText: isObsecureText,
+        suffixIconButton: IconButton(
+          icon: (isObsecureText)
+              ? Icon(
+                  Icons.visibility_off_outlined,
+                  color: ThemeColors.mainTextColor.withOpacity(0.5),
+                )
+              : Icon(
+                  Icons.visibility_outlined,
+                  color: ThemeColors.mainTextColor.withOpacity(0.5),
+                ),
+          onPressed: () {
+            setState(() {
+              isObsecureText = !isObsecureText;
+            });
+          },
+        ),
+        validator: widget.validator);
   }
 }

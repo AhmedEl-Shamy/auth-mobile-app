@@ -2,7 +2,6 @@ import 'package:auth_mobile_app/core/utils/text_stlyles.dart';
 import 'package:auth_mobile_app/features/authentication/presentation/widgets/custom_profile_info_field.dart';
 import 'package:flutter/material.dart';
 
-
 class UserProfileInfoWidget extends StatelessWidget {
   const UserProfileInfoWidget({super.key});
 

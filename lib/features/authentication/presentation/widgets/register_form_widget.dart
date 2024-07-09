@@ -1,6 +1,6 @@
 import 'package:auth_mobile_app/core/utils/colors.dart';
 import 'package:auth_mobile_app/core/utils/text_stlyles.dart';
-import 'package:auth_mobile_app/features/authentication/presentation/widgets/password_Form_Field.dart';
+import 'package:auth_mobile_app/features/authentication/presentation/widgets/password_form_field.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_button.dart';

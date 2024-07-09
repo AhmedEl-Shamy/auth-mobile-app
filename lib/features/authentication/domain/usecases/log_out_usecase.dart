@@ -5,13 +5,9 @@ class LogInUsecase extends UseCase<Future<void>, void> {
   final AuthRepo _authRepo;
 
   LogInUsecase({required AuthRepo authRepo}) : _authRepo = authRepo;
-  
+
   @override
   Future<void> call(void param) {
     return _authRepo.logOut();
   }
-  
-
-  
-  
 }

@@ -10,7 +10,7 @@ class ProfilePageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
+    return SafeArea(
       child: Column(
         children: [
           const CustomAppBar(),
@@ -18,10 +18,10 @@ class ProfilePageBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20),
             child: CustomButton(
-                label: 'Log out',
-                onPressed: () {},
-                backgroundColor: ThemeColors.logOutButtonBackground,
-              ),
+              label: 'Log out',
+              onPressed: () {},
+              backgroundColor: ThemeColors.logOutButtonBackground,
+            ),
           ),
         ],
       ),

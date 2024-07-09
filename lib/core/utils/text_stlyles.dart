@@ -1,7 +1,7 @@
 import 'package:auth_mobile_app/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
-class TextStlyles{
+class TextStlyles {
   static const TextStyle title = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
