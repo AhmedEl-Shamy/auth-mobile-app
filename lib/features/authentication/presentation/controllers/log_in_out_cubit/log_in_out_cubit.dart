@@ -17,13 +17,13 @@ class LogInOutCubit extends Cubit<LogInOutState> {
   final TextEditingController userNameController;
   final TextEditingController passwordController;
 
-  LogInOutCubit(
-      {required LogInUsecase logInUsecase,
-      required LogInWithTokenUseCase logInWithTokenUseCase,
-      required LogOutUsecase logOutUsecase,
-      required this.userNameController,
-      required this.passwordController})
-      : _logInUsecase = logInUsecase,
+  LogInOutCubit({
+    required LogInUsecase logInUsecase,
+    required LogInWithTokenUseCase logInWithTokenUseCase,
+    required LogOutUsecase logOutUsecase,
+    required this.userNameController,
+    required this.passwordController,
+  })  : _logInUsecase = logInUsecase,
         _logInWithTokenUseCase = logInWithTokenUseCase,
         _logOutUsecase = logOutUsecase,
         super(
@@ -48,7 +48,8 @@ class LogInOutCubit extends Cubit<LogInOutState> {
     Map<String, String> headers = {
       'Authorization': 'Bearer $token',
     };
-    Either<Failure, UserEntity> data = await _logInWithTokenUseCase.call(headers);
+    Either<Failure, UserEntity> data =
+        await _logInWithTokenUseCase.call(headers);
     data.fold(
       (failure) => emit(LogInOutFailed(failure: failure)),
       (user) => emit(LogInSucsses(user: user)),
