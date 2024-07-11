@@ -51,4 +51,9 @@ class AuthRepoImpl extends AuthRepo {
       return left(ServerFailure.fromDioException(e));
     }
   }
+  
+  @override
+  Future<void> rememberUser(UserEntity user) {
+    return _authLocalDataSource.storeUserData(user);
+  }
 }

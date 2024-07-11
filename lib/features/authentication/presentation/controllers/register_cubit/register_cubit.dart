@@ -1,3 +1,4 @@
+import 'package:auth_mobile_app/core/utils/failure.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'register_state.dart';

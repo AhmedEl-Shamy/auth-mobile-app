@@ -5,6 +5,7 @@ import '../../../../core/utils/failure.dart';
 
 abstract class AuthRepo {
   Future<Either<Failure, UserEntity>> logIn(Map<String, String> params);
+  Future<void> rememberUser(UserEntity user );
   Future<Either<Failure, bool>> register(Map<String, String> params);
   Future<Either<Failure, UserEntity>> logInWithToken(Map<String, String> params);
   Future<void> logOut();
