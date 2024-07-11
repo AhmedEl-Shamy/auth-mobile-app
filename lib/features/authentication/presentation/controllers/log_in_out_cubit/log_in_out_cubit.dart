@@ -3,6 +3,7 @@ import 'package:auth_mobile_app/features/authentication/domain/entities/user_ent
 import 'package:auth_mobile_app/features/authentication/domain/usecases/log_in_usecase.dart';
 import 'package:auth_mobile_app/features/authentication/domain/usecases/log_in_with_token_usecase.dart';
 import 'package:auth_mobile_app/features/authentication/domain/usecases/log_out_usecase.dart';
+import 'package:auth_mobile_app/features/authentication/domain/usecases/remember_user_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,11 +14,14 @@ class LogInOutCubit extends Cubit<LogInOutState> {
   final LogInUsecase _logInUsecase;
   final LogInWithTokenUseCase _logInWithTokenUseCase;
   final LogOutUsecase _logOutUsecase;
+  final RememberUserUsecase _rememberUserUsecase;
 
   final TextEditingController userNameController;
   final TextEditingController passwordController;
+  bool isRememberMeChecked = false;
 
   LogInOutCubit({
+    required RememberUserUsecase rememberUserUsecase,
     required LogInUsecase logInUsecase,
     required LogInWithTokenUseCase logInWithTokenUseCase,
     required LogOutUsecase logOutUsecase,
@@ -26,6 +30,7 @@ class LogInOutCubit extends Cubit<LogInOutState> {
   })  : _logInUsecase = logInUsecase,
         _logInWithTokenUseCase = logInWithTokenUseCase,
         _logOutUsecase = logOutUsecase,
+        _rememberUserUsecase = rememberUserUsecase,
         super(
           LogInOutInitial(),
         );
@@ -39,7 +44,12 @@ class LogInOutCubit extends Cubit<LogInOutState> {
     Either<Failure, UserEntity> data = await _logInUsecase.call(credentials);
     data.fold(
       (failure) => emit(LogInOutFailed(failure: failure)),
-      (user) => emit(LogInSucsses(user: user)),
+      (user) {
+        if (isRememberMeChecked) {
+          _rememberUserUsecase.call(user);
+        }
+        emit(LogInSucsses(user: user));
+      },
     );
   }
 
