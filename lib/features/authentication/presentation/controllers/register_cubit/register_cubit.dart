@@ -8,15 +8,13 @@ part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   final RegisterUseCase _registerUseCase;
-  final TextEditingController userNameController;
-  final TextEditingController emailController;
-  final TextEditingController passwordController;
+
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   RegisterCubit({
     required RegisterUseCase registerUseCase,
-    required this.userNameController,
-    required this.emailController,
-    required this.passwordController,
   })  : _registerUseCase = registerUseCase,
         super(
           RegisterInitial(),

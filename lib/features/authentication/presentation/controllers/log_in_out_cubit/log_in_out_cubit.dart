@@ -11,22 +11,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'log_in_out_state.dart';
 
 class LogInOutCubit extends Cubit<LogInOutState> {
-  final LogInUsecase _logInUsecase;
+  final LogInUseCase _logInUsecase;
   final LogInWithTokenUseCase _logInWithTokenUseCase;
-  final LogOutUsecase _logOutUsecase;
-  final RememberUserUsecase _rememberUserUsecase;
+  final LogOutUseCase _logOutUsecase;
+  final RememberUserUseCase _rememberUserUsecase;
 
-  final TextEditingController userNameController;
-  final TextEditingController passwordController;
+  final TextEditingController userNameController =TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   bool isRememberMeChecked = false;
 
   LogInOutCubit({
-    required RememberUserUsecase rememberUserUsecase,
-    required LogInUsecase logInUsecase,
+    required RememberUserUseCase rememberUserUsecase,
+    required LogInUseCase logInUsecase,
     required LogInWithTokenUseCase logInWithTokenUseCase,
-    required LogOutUsecase logOutUsecase,
-    required this.userNameController,
-    required this.passwordController,
+    required LogOutUseCase logOutUsecase,
   })  : _logInUsecase = logInUsecase,
         _logInWithTokenUseCase = logInWithTokenUseCase,
         _logOutUsecase = logOutUsecase,

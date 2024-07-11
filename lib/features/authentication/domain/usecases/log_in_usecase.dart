@@ -7,11 +7,11 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/utils/failure.dart';
 
-class LogInUsecase
+class LogInUseCase
     extends UseCaseWithParam<Future<Either<Failure, UserEntity>>, Map<String, String>> {
   final AuthRepo _authRepo;
 
-  LogInUsecase({required AuthRepo authRepo}) : _authRepo = authRepo;
+  LogInUseCase({required AuthRepo authRepo}) : _authRepo = authRepo;
   @override
   Future<Either<Failure, UserEntity>> call(Map<String, String> param) {
     return _authRepo.logIn(param);
