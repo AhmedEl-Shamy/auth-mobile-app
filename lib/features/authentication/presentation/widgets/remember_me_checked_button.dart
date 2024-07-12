@@ -1,4 +1,6 @@
+import 'package:auth_mobile_app/features/authentication/presentation/controllers/log_in_out_cubit/log_in_out_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/text_stlyles.dart';
 
@@ -10,17 +12,13 @@ class RememberMeCheckButton extends StatefulWidget {
 }
 
 class _RememberMeCheckButtonState extends State<RememberMeCheckButton> {
-  bool isChecked = false;
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 150,
       child: InkWell(
         onTap: () {
-          setState(() {
-            isChecked = !isChecked;
-          });
+          _updateRememberMeCheckedButton(context);
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,13 +28,9 @@ class _RememberMeCheckButtonState extends State<RememberMeCheckButton> {
                 borderRadius: BorderRadius.circular(5),
                 side: const BorderSide(width: 1),
               ),
-              value: isChecked,
+              value: context.read<LogInOutCubit>().isRememberMeChecked,
               onChanged: (value) {
-                setState(
-                  () {
-                    isChecked = !isChecked;
-                  },
-                );
+                _updateRememberMeCheckedButton(context);
               },
             ),
             Text(
@@ -49,5 +43,12 @@ class _RememberMeCheckButtonState extends State<RememberMeCheckButton> {
         ),
       ),
     );
+  }
+
+  void _updateRememberMeCheckedButton(BuildContext context) {
+    setState(() {
+      context.read<LogInOutCubit>().isRememberMeChecked =
+          !context.read<LogInOutCubit>().isRememberMeChecked;
+    });
   }
 }

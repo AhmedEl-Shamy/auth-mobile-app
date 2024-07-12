@@ -8,10 +8,10 @@ class LoginPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Column(
         children: [
-          CustomAppBar(),
+          const CustomAppBar(),
           LoginFormWidget(),
         ],
       ),

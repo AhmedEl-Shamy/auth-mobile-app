@@ -1,6 +1,8 @@
 import 'package:auth_mobile_app/core/utils/colors.dart';
 import 'package:auth_mobile_app/core/utils/text_stlyles.dart';
+import 'package:auth_mobile_app/features/authentication/presentation/controllers/log_in_out_cubit/log_in_out_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/widgets/custom_button.dart';
 import 'custom_form_field.dart';
@@ -9,14 +11,17 @@ import 'navigator_widget.dart';
 import 'password_form_field.dart';
 
 class LoginFormWidget extends StatelessWidget {
-  const LoginFormWidget({super.key});
-
+  LoginFormWidget({super.key});
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       child: Form(
+        key: formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -29,11 +34,9 @@ class LoginFormWidget extends StatelessWidget {
               height: 20,
             ),
             CustomFormField(
+              controller: usernameController,
               label: 'Username',
               isObsecureText: false,
-              validator: (value) {
-                return null;
-              },
               suffixIconButton: IconButton(
                 onPressed: () {},
                 icon: Icon(
@@ -46,7 +49,7 @@ class LoginFormWidget extends StatelessWidget {
               height: 20,
             ),
             PasswordFormField(
-              validator: (value) => null,
+              controller: passwordController,
             ),
             const SizedBox(
               height: 20,
@@ -60,7 +63,7 @@ class LoginFormWidget extends StatelessWidget {
             ),
             CustomButton(
               label: 'Log in',
-              onPressed: () {},
+              onPressed: () => _logInFun(context),
               backgroundColor: ThemeColors.authButtonBackground,
             ),
             const SizedBox(
@@ -75,5 +78,14 @@ class LoginFormWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _logInFun(BuildContext context) async {
+    if (formKey.currentState!.validate()) {
+      await context.read<LogInOutCubit>().logIn(
+            username: usernameController.text,
+            password: passwordController.text,
+          );
+    }
   }
 }

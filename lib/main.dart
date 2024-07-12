@@ -1,9 +1,9 @@
 import 'package:auth_mobile_app/core/utils/colors.dart';
 import 'package:auth_mobile_app/core/utils/dependency_injection.dart';
+import 'package:auth_mobile_app/features/authentication/presentation/controllers/log_in_out_cubit/log_in_out_cubit.dart';
 import 'package:auth_mobile_app/features/authentication/presentation/pages/login_page.dart';
-// import 'package:auth_mobile_app/features/authentication/presentation/pages/profile_page.dart';
-// import 'package:auth_mobile_app/features/authentication/presentation/pages/register_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   setupLocator();
@@ -15,15 +15,18 @@ class AuthMobileApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Auth Mobile App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: ThemeColors.authButtonBackground,
-            brightness: Brightness.light),
+    return BlocProvider(
+      create: (context) => sl.get<LogInOutCubit>(),
+      child: MaterialApp(
+        title: 'Auth Mobile App',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: ThemeColors.authButtonBackground,
+              brightness: Brightness.light),
+        ),
+        home: const LoginPage(),
       ),
-      home: const LoginPage(),
     );
   }
 }

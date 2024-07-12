@@ -6,17 +6,16 @@ import '../utils/colors.dart';
 class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField({
     super.key,
-    required this.validator,
     this.suffixIconButton,
     required this.hint,
     required this.isObsecureText,
+    required this.controller,
   });
 
   final String hint;
   final bool isObsecureText;
-  final String? Function(String? value) validator;
   final IconButton? suffixIconButton;
-
+  final TextEditingController controller;
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
@@ -30,8 +29,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       obscureText: widget.isObsecureText,
-      validator: widget.validator,
+      validator: _validator,
       style: TextStlyles.normal,
       cursorColor: ThemeColors.mainTextColor,
       decoration: InputDecoration(
@@ -54,5 +54,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         ),
       ),
     );
+  }
+
+  String? _validator(String? value) {
+    if (value?.isEmpty ?? false) {
+      return 'This is a required Field!';
+    } else {
+      return null;
+    }
   }
 }

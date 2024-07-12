@@ -1,7 +1,9 @@
 import 'package:auth_mobile_app/core/utils/colors.dart';
 import 'package:auth_mobile_app/core/utils/text_stlyles.dart';
+import 'package:auth_mobile_app/features/authentication/presentation/controllers/register_cubit/register_cubit.dart';
 import 'package:auth_mobile_app/features/authentication/presentation/widgets/password_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/widgets/custom_button.dart';
 import 'custom_form_field.dart';
@@ -9,8 +11,11 @@ import 'form_options_widget.dart';
 import 'navigator_widget.dart';
 
 class RegisterFormWidget extends StatelessWidget {
-  const RegisterFormWidget({super.key});
-
+  RegisterFormWidget({super.key});
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,11 +34,9 @@ class RegisterFormWidget extends StatelessWidget {
               height: 20,
             ),
             CustomFormField(
+              controller: usernameController,
               label: 'Username',
               isObsecureText: false,
-              validator: (value) {
-                return null;
-              },
               suffixIconButton: IconButton(
                 onPressed: () {},
                 icon: Icon(
@@ -46,11 +49,9 @@ class RegisterFormWidget extends StatelessWidget {
               height: 20,
             ),
             CustomFormField(
+              controller: emailController,
               label: 'Email',
               isObsecureText: false,
-              validator: (value) {
-                return null;
-              },
               suffixIconButton: IconButton(
                 onPressed: () {},
                 icon: Icon(
@@ -63,7 +64,7 @@ class RegisterFormWidget extends StatelessWidget {
               height: 20,
             ),
             PasswordFormField(
-              validator: (value) => null,
+              controller: passwordController,
             ),
             const SizedBox(
               height: 20,
@@ -77,7 +78,7 @@ class RegisterFormWidget extends StatelessWidget {
             ),
             CustomButton(
               label: 'Register',
-              onPressed: () {},
+              onPressed: () => _registerFun(context),
               backgroundColor: ThemeColors.authButtonBackground,
             ),
             const SizedBox(
@@ -92,5 +93,15 @@ class RegisterFormWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _registerFun(BuildContext context) async {
+    if (formKey.currentState!.validate()) {
+      await context.read<RegisterCubit>().registerUser(
+            username: usernameController.text,
+            email: emailController.text,
+            password: passwordController.text,
+          );
+    }
   }
 }

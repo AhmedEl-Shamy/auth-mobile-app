@@ -7,16 +7,15 @@ class CustomFormField extends StatelessWidget {
   const CustomFormField({
     super.key,
     required this.label,
+    required this.controller,
     required this.isObsecureText,
-    required this.validator,
     this.suffixIconButton,
   });
 
   final String label;
   final bool isObsecureText;
-  final String? Function(String? value) validator;
   final IconButton? suffixIconButton;
-
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,8 +31,8 @@ class CustomFormField extends StatelessWidget {
           height: 5,
         ),
         CustomTextFormField(
+          controller: controller,
           hint: label,
-          validator: validator,
           isObsecureText: isObsecureText,
           suffixIconButton: suffixIconButton,
         ),
