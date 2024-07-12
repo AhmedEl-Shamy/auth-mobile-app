@@ -17,3 +17,4 @@ final class LogInOutFailed extends LogInOutState {
 
 }
 final class LogOutSuccess extends LogInOutState {}
+final class NoTokenSavedState extends LogInOutState {}

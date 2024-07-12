@@ -4,11 +4,12 @@ import 'package:auth_mobile_app/features/authentication/data/data%20sources/auth
 import 'package:auth_mobile_app/features/authentication/data/data%20sources/auth_remote_data_source.dart';
 import 'package:auth_mobile_app/features/authentication/data/repositories/auth_repo_impl.dart';
 import 'package:auth_mobile_app/features/authentication/domain/repositories/auth_repo.dart';
+import 'package:auth_mobile_app/features/authentication/domain/usecases/get_user_token_usecase.dart';
 import 'package:auth_mobile_app/features/authentication/domain/usecases/log_in_usecase.dart';
 import 'package:auth_mobile_app/features/authentication/domain/usecases/log_in_with_token_usecase.dart';
 import 'package:auth_mobile_app/features/authentication/domain/usecases/log_out_usecase.dart';
 import 'package:auth_mobile_app/features/authentication/domain/usecases/register_usecase.dart';
-import 'package:auth_mobile_app/features/authentication/domain/usecases/remember_user_usecase.dart';
+import 'package:auth_mobile_app/features/authentication/domain/usecases/store_user_token_usecase.dart';
 import 'package:auth_mobile_app/features/authentication/presentation/controllers/log_in_out_cubit/log_in_out_cubit.dart';
 import 'package:auth_mobile_app/features/authentication/presentation/controllers/register_cubit/register_cubit.dart';
 import 'package:dio/dio.dart';
@@ -80,8 +81,14 @@ void setupLocator() {
       authRepo: sl.get<AuthRepo>(),
     ),
   );
-  sl.registerSingleton<RememberUserUseCase>(
-    RememberUserUseCase(
+  sl.registerSingleton<StoreUserTokenUseCase>(
+    StoreUserTokenUseCase(
+      authRepo: sl.get<AuthRepo>(),
+    ),
+  );
+
+  sl.registerSingleton<GetUserTokenUseCase>(
+    GetUserTokenUseCase(
       authRepo: sl.get<AuthRepo>(),
     ),
   );
@@ -90,10 +97,11 @@ void setupLocator() {
 
   sl.registerFactory<LogInOutCubit>(
     () => LogInOutCubit(
-      rememberUserUsecase: sl.get<RememberUserUseCase>(),
+      storeUserTokenUseCase: sl.get<StoreUserTokenUseCase>(),
       logInUsecase: sl.get<LogInUseCase>(),
       logInWithTokenUseCase: sl.get<LogInWithTokenUseCase>(),
       logOutUsecase: sl.get<LogOutUseCase>(),
+      getUserTokenUsecase: sl.get<GetUserTokenUseCase>(),
     ),
   );
 

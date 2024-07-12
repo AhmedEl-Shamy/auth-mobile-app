@@ -53,7 +53,13 @@ class AuthRepoImpl extends AuthRepo {
   }
   
   @override
-  Future<void> rememberUser(UserEntity user) {
-    return _authLocalDataSource.storeUserData(user);
+  Future<void> storeUserToken(String token) {
+    return _authLocalDataSource.storeUserToken(token);
   }
+  
+  @override
+  Future<String?> getStoredToken() {
+    return _authLocalDataSource.getUserToken();
+  }
+
 }
