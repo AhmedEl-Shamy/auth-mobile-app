@@ -13,7 +13,10 @@ Future<dynamic> showErrorMsg(context, Failure failure) {
       title: const Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Error', style: TextStlyles.title,),
+          Text(
+            'Error',
+            style: TextStlyles.title,
+          ),
           SizedBox(
             width: 15,
           ),
@@ -23,13 +26,23 @@ Future<dynamic> showErrorMsg(context, Failure failure) {
           ),
         ],
       ),
-      content: Text(failure.errMsg),
+      content: Text(
+        failure.errMsg,
+        textAlign: TextAlign.center,
+        style: TextStlyles.normal,
+      ),
       actions: [
         TextButton(
           onPressed: () {
             GoRouter.of(context).pop();
           },
-          child: const Text('Ok'),
+          child: Text(
+            'OK',
+            style: TextStlyles.normal.copyWith(
+              fontWeight: FontWeight.bold,
+              color: ThemeColors.appBlueColor,
+            ),
+          ),
         )
       ],
     ),
