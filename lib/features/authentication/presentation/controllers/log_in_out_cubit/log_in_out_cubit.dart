@@ -31,7 +31,7 @@ class LogInOutCubit extends Cubit<LogInOutState> {
         super(
           LogInOutInitial(),
         );
-        
+
   bool isRememberMeChecked = false;
 
   Future<void> logIn({
@@ -55,11 +55,11 @@ class LogInOutCubit extends Cubit<LogInOutState> {
     );
   }
 
-
   Future<void> logInWithToken() async {
     emit(LogInOutLoading());
     String? token = await _getUserTokenUsecase.call();
-    if (token == null) {
+
+    if (token == null || token.isEmpty) {
       emit(NoTokenSavedState());
       return;
     }

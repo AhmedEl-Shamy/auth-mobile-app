@@ -10,12 +10,19 @@ class CustomFormField extends StatelessWidget {
     required this.controller,
     required this.isObsecureText,
     this.suffixIconButton,
+    this.textInputAction,
+    this.textInputType,
+    this.focusNode, this.onFieldSubmitted,
   });
 
   final String label;
   final bool isObsecureText;
   final IconButton? suffixIconButton;
   final TextEditingController controller;
+  final TextInputAction? textInputAction;
+  final TextInputType? textInputType;
+  final FocusNode? focusNode;
+  final void Function(String)? onFieldSubmitted;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,6 +42,10 @@ class CustomFormField extends StatelessWidget {
           hint: label,
           isObsecureText: isObsecureText,
           suffixIconButton: suffixIconButton,
+          focusNode: focusNode,
+          textInputAction: textInputAction,
+          textInputType: textInputType,
+          onFieldSubmitted: onFieldSubmitted,
         ),
       ],
     );

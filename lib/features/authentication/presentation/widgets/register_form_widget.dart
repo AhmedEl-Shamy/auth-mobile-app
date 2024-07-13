@@ -1,3 +1,4 @@
+import 'package:auth_mobile_app/config/app_router.dart';
 import 'package:auth_mobile_app/core/utils/colors.dart';
 import 'package:auth_mobile_app/core/utils/text_stlyles.dart';
 import 'package:auth_mobile_app/features/authentication/presentation/controllers/register_cubit/register_cubit.dart';
@@ -5,6 +6,7 @@ import 'package:auth_mobile_app/features/authentication/presentation/widgets/pas
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/utils/constants.dart';
 import '../../../../core/widgets/custom_button.dart';
 import 'custom_form_field.dart';
 import 'form_options_widget.dart';
@@ -16,12 +18,15 @@ class RegisterFormWidget extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final FocusNode usernameFocusNode = FocusNode();
+  final FocusNode emailFocusNode = FocusNode();
+  final FocusNode passwordFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
+    return Padding(
       padding: const EdgeInsets.all(20),
       child: Form(
+        key: formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -31,14 +36,20 @@ class RegisterFormWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(
-              height: 20,
+              height: AppConstants.spaceBetweenFormFields,
             ),
             CustomFormField(
               controller: usernameController,
               label: 'Username',
               isObsecureText: false,
+              focusNode: usernameFocusNode,
+              textInputType: TextInputType.text,
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) {
+                FocusScope.of(context).requestFocus(emailFocusNode);
+              },
               suffixIconButton: IconButton(
-                onPressed: () {},
+                onPressed: () => usernameController.text = '',
                 icon: Icon(
                   Icons.cancel_outlined,
                   color: ThemeColors.mainTextColor.withOpacity(0.5),
@@ -46,14 +57,20 @@ class RegisterFormWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: AppConstants.spaceBetweenFormFields,
             ),
             CustomFormField(
               controller: emailController,
               label: 'Email',
               isObsecureText: false,
+              focusNode: emailFocusNode,
+              textInputType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) {
+                FocusScope.of(context).requestFocus(passwordFocusNode);
+              },
               suffixIconButton: IconButton(
-                onPressed: () {},
+                onPressed: () => emailController.text = '',
                 icon: Icon(
                   Icons.cancel_outlined,
                   color: ThemeColors.mainTextColor.withOpacity(0.5),
@@ -61,20 +78,24 @@ class RegisterFormWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: AppConstants.spaceBetweenFormFields,
             ),
             PasswordFormField(
               controller: passwordController,
+              focusNode: passwordFocusNode,
+              textInputType: TextInputType.visiblePassword,
+              textInputAction: TextInputAction.done,
+              onFieldSubmitted: (_) => _registerFun(context),
             ),
             const SizedBox(
-              height: 20,
+              height: AppConstants.spaceBetweenFormFields,
             ),
             FormOptionsWidget(
               secondOptionStr: 'Have a problem?',
               secondOptionFun: () {},
             ),
             const SizedBox(
-              height: 20,
+              height: AppConstants.spaceBetweenFormFields,
             ),
             CustomButton(
               label: 'Register',
@@ -82,12 +103,12 @@ class RegisterFormWidget extends StatelessWidget {
               backgroundColor: ThemeColors.authButtonBackground,
             ),
             const SizedBox(
-              height: 20,
+              height: AppConstants.spaceBetweenFormFields,
             ),
             const NavigatorWidget(
               statement: 'Already have an account?',
               pageName: 'Log in',
-              pageRoute: '/',
+              pageRoute: AppRouter.loginRoute,
             ),
           ],
         ),

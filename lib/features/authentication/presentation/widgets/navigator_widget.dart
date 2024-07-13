@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/text_stlyles.dart';
@@ -25,7 +26,9 @@ class NavigatorWidget extends StatelessWidget {
           width: 10,
         ),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            GoRouter.of(context).pushReplacement(pageRoute);
+          },
           child: Text(
             pageName,
             style: TextStlyles.normal.copyWith(

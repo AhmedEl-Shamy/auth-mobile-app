@@ -1,4 +1,6 @@
+import 'package:auth_mobile_app/config/app_router.dart';
 import 'package:auth_mobile_app/core/utils/colors.dart';
+import 'package:auth_mobile_app/core/utils/constants.dart';
 import 'package:auth_mobile_app/core/utils/text_stlyles.dart';
 import 'package:auth_mobile_app/features/authentication/presentation/controllers/log_in_out_cubit/log_in_out_cubit.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +17,11 @@ class LoginFormWidget extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final FocusNode usernameFocusNode = FocusNode();
+  final FocusNode passwordFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
+    return Padding(
       padding: const EdgeInsets.all(20),
       child: Form(
         key: formKey,
@@ -31,14 +34,20 @@ class LoginFormWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(
-              height: 20,
+              height: AppConstants.spaceBetweenFormFields,
             ),
             CustomFormField(
               controller: usernameController,
               label: 'Username',
               isObsecureText: false,
+              focusNode: usernameFocusNode,
+              textInputType: TextInputType.text,
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) {
+                FocusScope.of(context).requestFocus(passwordFocusNode);
+              },
               suffixIconButton: IconButton(
-                onPressed: () {},
+                onPressed: () => usernameController.text = '',
                 icon: Icon(
                   Icons.cancel_outlined,
                   color: ThemeColors.mainTextColor.withOpacity(0.5),
@@ -46,20 +55,24 @@ class LoginFormWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: AppConstants.spaceBetweenFormFields,
             ),
             PasswordFormField(
               controller: passwordController,
+              focusNode: passwordFocusNode,
+              textInputType: TextInputType.visiblePassword,
+              textInputAction: TextInputAction.done,
+              onFieldSubmitted: (_) => _logInFun(context),
             ),
             const SizedBox(
-              height: 20,
+              height: AppConstants.spaceBetweenFormFields,
             ),
             FormOptionsWidget(
               secondOptionStr: 'Forgot password?',
               secondOptionFun: () {},
             ),
             const SizedBox(
-              height: 20,
+              height: AppConstants.spaceBetweenFormFields,
             ),
             CustomButton(
               label: 'Log in',
@@ -67,12 +80,12 @@ class LoginFormWidget extends StatelessWidget {
               backgroundColor: ThemeColors.authButtonBackground,
             ),
             const SizedBox(
-              height: 20,
+              height: AppConstants.spaceBetweenFormFields,
             ),
             const NavigatorWidget(
               statement: 'Don’t have an account?',
               pageName: 'Register',
-              pageRoute: '/',
+              pageRoute: AppRouter.registerRoute,
             ),
           ],
         ),

@@ -10,12 +10,20 @@ class CustomTextFormField extends StatefulWidget {
     required this.hint,
     required this.isObsecureText,
     required this.controller,
+    this.textInputAction,
+    this.textInputType,
+    this.focusNode, this.onFieldSubmitted,
   });
 
   final String hint;
   final bool isObsecureText;
   final IconButton? suffixIconButton;
   final TextEditingController controller;
+  final TextInputAction? textInputAction;
+  final TextInputType? textInputType;
+  final FocusNode? focusNode;
+  final void Function(String)? onFieldSubmitted;
+
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
@@ -32,8 +40,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       controller: widget.controller,
       obscureText: widget.isObsecureText,
       validator: _validator,
+      onFieldSubmitted: widget.onFieldSubmitted,
       style: TextStlyles.normal,
       cursorColor: ThemeColors.mainTextColor,
+      keyboardType: widget.textInputType,
+      textInputAction: widget.textInputAction,
+      focusNode: widget.focusNode,
       decoration: InputDecoration(
         hintText: widget.hint,
         contentPadding: const EdgeInsets.all(20),

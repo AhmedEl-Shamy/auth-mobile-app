@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../config/size_config.dart';
-import '../utils/assets_data.dart';
+import 'app_logo_widget.dart';
 
 class LogoWidget extends StatelessWidget {
   const LogoWidget({
@@ -13,19 +12,14 @@ class LogoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
-      child: Container(
-        padding: EdgeInsets.zero,
-        height: SizeConfig.heightBlock * 15,
-        width: SizeConfig.heightBlock * 15,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: (imageUrl == null)
-                ? const AssetImage(AssetsData.logo)
-                : NetworkImage(imageUrl!),
-            fit: BoxFit.cover,
-          ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: AppLogo(
+          imageUrl: imageUrl ?? '',
         ),
       ),
     );
   }
 }
+
+

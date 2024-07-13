@@ -13,7 +13,7 @@ class LoginPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return SingleChildScrollView(
       child: Column(
         children: [
           const CustomAppBar(),

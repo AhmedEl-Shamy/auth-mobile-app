@@ -26,7 +26,7 @@ class UserModel extends UserEntity {
           userlastName: lastName!,
           userName: username!,
           userEmail: email!,
-          userToken: token!,
+          userToken: refreshToken ?? '',
           userImage: image!,
           userGender: gender!,
         );

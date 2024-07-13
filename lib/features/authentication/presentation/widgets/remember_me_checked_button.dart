@@ -1,3 +1,4 @@
+import 'package:auth_mobile_app/config/size_config.dart';
 import 'package:auth_mobile_app/features/authentication/presentation/controllers/log_in_out_cubit/log_in_out_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,13 +16,13 @@ class _RememberMeCheckButtonState extends State<RememberMeCheckButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 150,
+      width: SizeConfig.widthBlock * 50,
       child: InkWell(
         onTap: () {
           _updateRememberMeCheckedButton(context);
         },
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Checkbox(
               shape: RoundedRectangleBorder(
@@ -33,6 +34,7 @@ class _RememberMeCheckButtonState extends State<RememberMeCheckButton> {
                 _updateRememberMeCheckedButton(context);
               },
             ),
+            // const SizedBox(width: 5,),
             Text(
               'Remember me',
               style: TextStlyles.normal.copyWith(

@@ -21,7 +21,7 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
 
   @override
   Future<void> storeUserToken(String token) async {
-    await _securedStorageService.write(key: 'token', value: token);
+    await _securedStorageService.write(key: 'userToken', value: token);
   }
   
   @override

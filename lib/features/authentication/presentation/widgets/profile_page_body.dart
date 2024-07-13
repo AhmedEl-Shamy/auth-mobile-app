@@ -15,25 +15,23 @@ class ProfilePageBody extends StatelessWidget {
   final UserEntity user;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          CustomAppBar(
-            imageUrl: user.userImage,
+    return Column(
+      children: [
+        CustomAppBar(
+          imageUrl: user.userImage,
+        ),
+        UserProfileInfoWidget(
+          user: user,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: CustomButton(
+            label: 'Log out',
+            onPressed: () => _logOutFun(context),
+            backgroundColor: ThemeColors.logOutButtonBackground,
           ),
-          UserProfileInfoWidget(
-            user: user,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: CustomButton(
-              label: 'Log out',
-              onPressed: () => _logOutFun(context),
-              backgroundColor: ThemeColors.logOutButtonBackground,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
