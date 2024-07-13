@@ -50,7 +50,7 @@ class LoginFormWidget extends StatelessWidget {
                 onPressed: () => usernameController.text = '',
                 icon: Icon(
                   Icons.cancel_outlined,
-                  color: ThemeColors.mainTextColor.withOpacity(0.5),
+                  color: ThemeColors.appBlackColor.withOpacity(0.5),
                 ),
               ),
             ),
@@ -77,7 +77,7 @@ class LoginFormWidget extends StatelessWidget {
             CustomButton(
               label: 'Log in',
               onPressed: () => _logInFun(context),
-              backgroundColor: ThemeColors.authButtonBackground,
+              backgroundColor: ThemeColors.appBlueColor,
             ),
             const SizedBox(
               height: AppConstants.spaceBetweenFormFields,

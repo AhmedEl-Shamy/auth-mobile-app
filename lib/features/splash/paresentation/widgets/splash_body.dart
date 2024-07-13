@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../config/app_router.dart';
+import '../../../../core/functions/error_msg_fun.dart';
 import '../../../../core/widgets/app_bar_logo.dart';
 import '../../../authentication/presentation/controllers/log_in_out_cubit/log_in_out_cubit.dart';
 
@@ -38,14 +39,19 @@ class _SplashPageBodyState extends State<SplashPageBody> {
     );
   }
 
-  void _listener(context, state) {
+  void _listener(context, state) async {
     if (state is LogInSucsses) {
       GoRouter.of(context).pushReplacement(
         AppRouter.profileRoute,
         extra: state.user,
       );
+    } else if (state is LogInOutFailed) {
+      await showErrorMsg(context, state.failure);
+      GoRouter.of(context).pushReplacement(AppRouter.loginRoute);
     } else {
       GoRouter.of(context).pushReplacement(AppRouter.loginRoute);
     }
   }
+
+  
 }

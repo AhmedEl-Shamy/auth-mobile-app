@@ -23,7 +23,7 @@ class AuthMobileApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: ThemeColors.authButtonBackground,
+            seedColor: ThemeColors.appBlueColor,
             brightness: Brightness.light,
           ),
         ),

@@ -28,7 +28,7 @@ class ProfilePageBody extends StatelessWidget {
           child: CustomButton(
             label: 'Log out',
             onPressed: () => _logOutFun(context),
-            backgroundColor: ThemeColors.logOutButtonBackground,
+            backgroundColor: ThemeColors.appRedColor,
           ),
         ),
       ],

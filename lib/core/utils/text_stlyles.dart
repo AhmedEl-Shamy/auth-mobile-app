@@ -5,10 +5,10 @@ class TextStlyles {
   static const TextStyle title = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
-    color: ThemeColors.mainTextColor,
+    color: ThemeColors.appBlackColor,
   );
   static const TextStyle normal = TextStyle(
     fontSize: 16,
-    color: ThemeColors.mainTextColor,
+    color: ThemeColors.appBlackColor,
   );
 }

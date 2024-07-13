@@ -42,7 +42,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       validator: _validator,
       onFieldSubmitted: widget.onFieldSubmitted,
       style: TextStlyles.normal,
-      cursorColor: ThemeColors.mainTextColor,
+      cursorColor: ThemeColors.appBlackColor,
       keyboardType: widget.textInputType,
       textInputAction: widget.textInputAction,
       focusNode: widget.focusNode,

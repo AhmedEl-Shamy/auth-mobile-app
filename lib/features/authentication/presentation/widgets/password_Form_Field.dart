@@ -38,11 +38,11 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
         icon: (isObsecureText)
             ? Icon(
                 Icons.visibility_off_outlined,
-                color: ThemeColors.mainTextColor.withOpacity(0.5),
+                color: ThemeColors.appBlackColor.withOpacity(0.5),
               )
             : Icon(
                 Icons.visibility_outlined,
-                color: ThemeColors.mainTextColor.withOpacity(0.5),
+                color: ThemeColors.appBlackColor.withOpacity(0.5),
               ),
         onPressed: () {
           setState(() {

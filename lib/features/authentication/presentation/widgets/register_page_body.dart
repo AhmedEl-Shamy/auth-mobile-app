@@ -1,4 +1,5 @@
 import 'package:auth_mobile_app/config/app_router.dart';
+import 'package:auth_mobile_app/core/functions/error_msg_fun.dart';
 import 'package:auth_mobile_app/core/widgets/custom_loading_widget.dart';
 import 'package:auth_mobile_app/features/authentication/presentation/controllers/register_cubit/register_cubit.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,8 @@ class RegisterPageBody extends StatelessWidget {
             listener: (context, state) {
               if (state is RegisterSuccess) {
                 GoRouter.of(context).pushReplacement(AppRouter.loginRoute);
+              } else if (state is RegisterFailed) {
+                showErrorMsg(context, state.failure);
               }
             },
             builder: (context, state) {

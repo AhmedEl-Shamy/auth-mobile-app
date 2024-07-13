@@ -35,7 +35,7 @@ class NavigatorWidget extends StatelessWidget {
               fontWeight: FontWeight.bold,
               decoration: TextDecoration.underline,
               decorationStyle: TextDecorationStyle.solid,
-              decorationColor: ThemeColors.authButtonBackground,
+              decorationColor: ThemeColors.appBlueColor,
             ),
           ),
         ),

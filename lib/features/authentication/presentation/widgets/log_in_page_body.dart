@@ -1,4 +1,5 @@
 import 'package:auth_mobile_app/config/app_router.dart';
+import 'package:auth_mobile_app/core/functions/error_msg_fun.dart';
 import 'package:auth_mobile_app/features/authentication/presentation/controllers/log_in_out_cubit/log_in_out_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,14 +19,7 @@ class LoginPageBody extends StatelessWidget {
         children: [
           const CustomAppBar(),
           BlocConsumer<LogInOutCubit, LogInOutState>(
-            listener: (context, state) {
-              if (state is LogInSucsses) {
-                GoRouter.of(context).pushReplacement(
-                  AppRouter.profileRoute,
-                  extra: state.user,
-                );
-              }
-            },
+            listener: _listener,
             builder: (context, state) {
               if (state is LogInOutLoading) {
                 return const CustomLoadingWidget();
@@ -37,5 +31,19 @@ class LoginPageBody extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _listener(context, state) {
+    if (state is LogInSucsses) {
+      GoRouter.of(context).pushReplacement(
+        AppRouter.profileRoute,
+        extra: state.user,
+      );
+    } else if (state is LogInOutFailed) {
+      showErrorMsg(
+        context,
+        state.failure,
+      );
+    }
   }
 }

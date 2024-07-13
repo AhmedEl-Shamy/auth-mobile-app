@@ -32,7 +32,7 @@ class CustomProfileInfoField extends StatelessWidget {
           alignment: AlignmentDirectional.centerStart,
           decoration: BoxDecoration(
             border: Border.all(
-              color: ThemeColors.mainTextColor.withOpacity(0.5),
+              color: ThemeColors.appBlackColor.withOpacity(0.5),
               width: 1,
             ),
             borderRadius: BorderRadius.circular(10),
